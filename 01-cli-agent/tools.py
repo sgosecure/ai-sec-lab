@@ -10,6 +10,10 @@ log = logging.getLogger("agent.tools")
 TIMEOUT = 10
 CVE_PATTERN = re.compile(r"^CVE-\d{4}-\d{4,}$", re.IGNORECASE)
 
+KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+_kev_cache = None  # the file is ~1 MB, so download it once per run
+
+
 # --- Schemas sent to the model -------------------------------------------
 TOOL_SCHEMAS = [
     {
@@ -24,6 +28,19 @@ TOOL_SCHEMAS = [
     {
         "name": "lookup_cve",
         "description": "Look up a CVE in the NIST NVD. Returns description, CVSS score and severity.",
+        "input_schema": {
+            "type": "object",
+            "properties": {"cve_id": {"type": "string", "description": "e.g. CVE-2021-44228"}},
+            "required": ["cve_id"],
+        },
+    },
+    {
+        "name": "check_kev",
+        "description": (
+            "Check if a CVE is in CISA's Known Exploited Vulnerabilities (KEV) catalog, "
+            "meaning it is actively exploited in the wild. Returns date added, "
+            "remediation due date, and whether ransomware uses it."
+        ),
         "input_schema": {
             "type": "object",
             "properties": {"cve_id": {"type": "string", "description": "e.g. CVE-2021-44228"}},
@@ -66,6 +83,29 @@ def get_weather(city: str) -> dict:
     return {"city": loc["name"], "temp_f": cur["temperature_2m"], "wind_mph": cur["wind_speed_10m"]}
 
 
+def check_kev(cve_id: str) -> dict:
+    global _kev_cache
+    cve_id = cve_id.strip().upper()
+    if not CVE_PATTERN.match(cve_id):          # same bouncer as lookup_cve
+        return {"error": f"Invalid CVE ID format: {cve_id}"}
+    if _kev_cache is None:
+        data = _get(KEV_URL)
+        _kev_cache = {v["cveID"]: v for v in data["vulnerabilities"]}
+    entry = _kev_cache.get(cve_id)
+    if not entry:
+        return {"cve_id": cve_id, "in_kev": False}
+    return {
+        "cve_id": cve_id,
+        "in_kev": True,
+        "product": f'{entry["vendorProject"]} {entry["product"]}',
+        "date_added": entry["dateAdded"],
+        "due_date": entry["dueDate"],
+        "ransomware_use": entry["knownRansomwareCampaignUse"],
+        "required_action": entry["requiredAction"],
+    }
+
+
+
 def lookup_cve(cve_id: str) -> dict:
     cve_id = cve_id.strip().upper()
     if not CVE_PATTERN.match(cve_id):  # input validation: never pass raw model output to an API
@@ -88,7 +128,8 @@ def lookup_cve(cve_id: str) -> dict:
     return {"cve_id": cve_id, "cvss": score, "severity": severity, "description": desc[:500]}
 
 
-REGISTRY = {"get_weather": get_weather, "lookup_cve": lookup_cve}
+#REGISTRY = {"get_weather": get_weather, "lookup_cve": lookup_cve}
+REGISTRY = {"get_weather": get_weather, "lookup_cve": lookup_cve, "check_kev": check_kev}
 
 
 def run_tool(name: str, args: dict) -> dict:
