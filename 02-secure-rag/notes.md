@@ -64,3 +64,7 @@ Lesson	Key idea
 1	RAG means your code finds a page and Claude answers from it
 2	Word matching misses plurals and synonyms, and search always returns something
 3	R → A → G connected, with two safety layers against made-up answers
+
+Lesson 5
+
+Embeddings match meaning
