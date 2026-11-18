@@ -42,7 +42,7 @@ G = when it responds with No matching policy if it cannot find the answer, I ans
 
 ---
 
-Interview : Q & A
+# Interview : Q & A
 
 A, corrected: the page is stapled to the question, and together they make the prompt.
 
@@ -59,7 +59,7 @@ The prompt goes into Claude and the response comes out. A happens before Claude,
 
 Lesson 3 Key ideas
 
-What you’ve learned so far
+# What you’ve learned so far
 Lesson	Key idea
 1	RAG means your code finds a page and Claude answers from it
 2	Word matching misses plurals and synonyms, and search always returns something
@@ -67,4 +67,10 @@ Lesson	Key idea
 
 Lesson 5
 
-Embeddings match meaning
+# Embeddings match meaning
+
+# Chunking, interview version
+
+“Chunking splits documents into pieces that each hold one complete idea, so each piece gets a precise embedding and only the relevant piece is sent to the model.”
+
+“A good chunk is focused: it holds one complete idea, so its embedding is precise and Claude gets everything it needs and nothing extra.”
