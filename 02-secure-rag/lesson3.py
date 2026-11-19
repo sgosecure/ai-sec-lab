@@ -1,3 +1,5 @@
+# Lesson 3: Your first complete RAG program
+
 import re
 import anthropic
 from dotenv import load_dotenv

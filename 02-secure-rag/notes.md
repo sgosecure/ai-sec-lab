@@ -74,3 +74,21 @@ Lesson 5
 “Chunking splits documents into pieces that each hold one complete idea, so each piece gets a precise embedding and only the relevant piece is sent to the model.”
 
 “A good chunk is focused: it holds one complete idea, so its embedding is precise and Claude gets everything it needs and nothing extra.”
+
+# Interview question
+
+How do you stop RAG from leaking confidential data?
+
+# Lesson 7
+
+Now that you’ve read both, answer in your own words, one sentence each:
+
+# Questions
+
+Why filter in code instead of telling Claude “don’t reveal it”?
+Where must the role come from, and what happens if it comes from the question?
+
+# Answer
+
+“I enforce access control in the retrieval code, before search, so restricted chunks never reach the model. Prompt instructions can be bypassed; code can’t.”
+“The user’s role comes from authentication, never from the prompt. Otherwise anyone can claim to be an admin and escalate privileges.”

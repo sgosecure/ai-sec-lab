@@ -1,3 +1,5 @@
+# Lesson 2: Find the right page by matching words
+
 import re
 
 pages = [

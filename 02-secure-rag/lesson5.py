@@ -1,3 +1,5 @@
+# Lesson 5: Search by meaning, plugged into RAG
+
 import numpy as np
 import anthropic
 from fastembed import TextEmbedding

@@ -1,0 +1,1 @@
+Claude, I need a better method of learning, what you're proposing isn't quite working for me because I'm completely new to AI Engineering, I need you to teach me like I'm in first grade for AI Engineering.  I'm going to move to Weeks 3–4: RAG with access control. Can you help me with my study method?

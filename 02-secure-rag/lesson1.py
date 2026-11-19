@@ -1,3 +1,5 @@
+# Lesson 1: What is RAG?
+
 import anthropic
 from dotenv import load_dotenv
 load_dotenv()

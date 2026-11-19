@@ -1,3 +1,5 @@
+# Lesson 4: Embeddings, matching meaning instead of spelling
+
 import numpy as np
 from fastembed import TextEmbedding
 

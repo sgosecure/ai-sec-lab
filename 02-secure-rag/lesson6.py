@@ -1,3 +1,5 @@
+# Lesson 6: Chunking, cutting a big book into index cards
+
 import numpy as np
 from fastembed import TextEmbedding
 
