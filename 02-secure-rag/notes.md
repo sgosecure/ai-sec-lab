@@ -92,3 +92,13 @@ Where must the role come from, and what happens if it comes from the question?
 
 “I enforce access control in the retrieval code, before search, so restricted chunks never reach the model. Prompt instructions can be bypassed; code can’t.”
 “The user’s role comes from authentication, never from the prompt. Otherwise anyone can claim to be an admin and escalate privileges.”
+
+# MCP Server 
+
+Question
+
+what MCP is
+
+“MCP is a standard plug for AI tools. I write tools once in a separate server, and any MCP app (Claude Desktop, Claude Code) can use them, instead of rebuilding them inside each app.”
+
+

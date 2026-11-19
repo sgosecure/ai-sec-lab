@@ -3,3 +3,7 @@ requests>=2.32
 python-dotenv>=1.0
 tenacity>=9.0
 pytest>=8.0
+
+mcp[cli]<2
+fastembed
+numpy
