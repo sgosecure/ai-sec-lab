@@ -101,4 +101,12 @@ what MCP is
 
 “MCP is a standard plug for AI tools. I write tools once in a separate server, and any MCP app (Claude Desktop, Claude Code) can use them, instead of rebuilding them inside each app.”
 
+# (base) [3.12.12] ~/Documents/code/ai-engineer/ai-sec-lab % echo "$PWD/.venv/bin/python"
+# /Users/sgo/Documents/code/ai-engineer/ai-sec-lab/.venv/bin/python
+# (base) [3.12.12] ~/Documents/code/ai-engineer/ai-sec-lab % echo "$PWD/03-mcp-server/server.py"
+# /Users/sgo/Documents/code/ai-engineer/ai-sec-lab/03-mcp-server/server.py
+
+Interview version:
+
+“I built an MCP server and connected it to Claude Desktop. The model decides when to call the tool from its description, and the tool provides data the model can’t know, like internal service names.”
 
