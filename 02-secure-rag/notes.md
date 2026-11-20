@@ -110,3 +110,5 @@ Interview version:
 
 “I built an MCP server and connected it to Claude Desktop. The model decides when to call the tool from its description, and the tool provides data the model can’t know, like internal service names.”
 
+
+“I built an MCP server that reads authentication logs, so Claude can answer questions like ‘which IP has the most failed logins?’ Tool design matters: the model can only reason over what the tool returns.”
