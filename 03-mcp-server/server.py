@@ -45,6 +45,15 @@ def failed_logins_by_ip() -> dict:
     return dict(counts.most_common())
 
 
+ALLOWED_LOGS = {"auth_log.csv"}                    # the ONLY files this tool may read
+
+@mcp.tool()
+def read_log(filename: str) -> str:
+    """Read an approved log file and return its contents."""
+    if filename not in ALLOWED_LOGS:               # 🔒 the bouncer
+        return f"Access denied: '{filename}' is not an approved log file."
+    return (Path(__file__).parent / filename).read_text()
+
 
 if __name__ == "__main__":
     mcp.run()

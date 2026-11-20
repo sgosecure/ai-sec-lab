@@ -112,3 +112,6 @@ Interview version:
 
 
 “I built an MCP server that reads authentication logs, so Claude can answer questions like ‘which IP has the most failed logins?’ Tool design matters: the model can only reason over what the tool returns.”
+
+“MCP tools are an attack surface: an attacker who can influence the model can control tool arguments. I validate every argument in the tool itself with an allowlist. For example, my log-reading tool only opens approved files, which blocks path traversal.”
+
