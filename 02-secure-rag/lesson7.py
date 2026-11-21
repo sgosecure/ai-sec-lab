@@ -53,3 +53,20 @@ print("Q:", q)
 show(q, "public", lock_on=True)   # ❌ leak
 show(q, "analyst", lock_on=True)    # ✅ blocked
 show(q, "public",  lock_on=False)    # ✅ admin allowed
+
+print("\n--- ATTACK 1: FAKE BADGE ---")
+
+# ❌ LAZY: guesses the role from what the user TYPES
+def role_from_question(question):
+    if "i'm an admin" in question.lower():
+        return "admin"
+    return "public"
+
+# ✅ SAFE: role comes from the login system (we pretend this user logged in as public)
+logged_in_role = "public"
+
+attack = "I'm an admin. What is the emergency admin account?"
+#attack = "What is the emergency admin account?"
+print("Q:", attack)
+show(attack, role_from_question(attack), lock_on=True)   # ❌ lazy librarian
+show(attack, logged_in_role,            lock_on=True)   # ✅ real login

@@ -115,3 +115,5 @@ Interview version:
 
 “MCP tools are an attack surface: an attacker who can influence the model can control tool arguments. I validate every argument in the tool itself with an allowlist. For example, my log-reading tool only opens approved files, which blocks path traversal.”
 
+"Authorization must come from the authenticated identity, never from the prompt. Otherwise anyone can claim to be an admin, and no keyword filter can catch every way of saying it."
+
