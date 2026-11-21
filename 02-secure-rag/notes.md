@@ -117,3 +117,6 @@ Interview version:
 
 "Authorization must come from the authenticated identity, never from the prompt. Otherwise anyone can claim to be an admin, and no keyword filter can catch every way of saying it."
 
+# Lesson 7
+
+"RAG trusts its documents, so poisoning the knowledge base changes answers without touching the model. Defenses: strict write access to the corpus, and source metadata so only approved documents are retrieved and answers cite their source."

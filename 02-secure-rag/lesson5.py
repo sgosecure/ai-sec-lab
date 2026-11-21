@@ -47,9 +47,11 @@ def ask(question):
     answer = "".join(b.text for b in reply.content if b.type == "text")
     return answer or "(Claude returned no text)"
 
-for q in ["How long should my login secret be?",
-          "What's for lunch today?",
-          "Can I use coffee shop internet for work?",
-          "Do passwords need special characters?",
-          "Can I plug in a thumb drive?"]:
+# for q in ["How long should my login secret be?",
+#           "What's for lunch today?",
+#           "Can I use coffee shop internet for work?",
+#           "Do passwords need special characters?",
+#           "Can I plug in a thumb drive?"]:
+
+for q in ["How long must passwords be?"]:
     print("   A:", ask(q))
